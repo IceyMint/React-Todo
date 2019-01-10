@@ -42,12 +42,21 @@ class App extends React.Component {
     this.setState({ taskData: tempArray });
   }
 
+  clearCompleted = (e) => {
+    e.preventDefault();
+    let tempArray = [...this.state.taskData];
+    tempArray = tempArray.filter(x => {
+      return x.completed === false
+    })
+    this.setState({ taskData: tempArray });
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList taskData={this.state.taskData} handleTaskClick={this.handleTaskClick} handleClickComplete={this.handleClickComplete} />
-        <TodoForm task={this.state.task} handleChange={this.handleChange} handleAddTask={this.handleAddTask} />
+        <TodoForm task={this.state.task} handleChange={this.handleChange} handleAddTask={this.handleAddTask} clearCompleted={this.clearCompleted} />
       </div>
     );
   }
