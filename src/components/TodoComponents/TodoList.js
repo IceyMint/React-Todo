@@ -5,9 +5,8 @@ import Todo from './Todo'
 const TodoList = (props) => {
     return (
         <div>
-            {props.task}
-            {props.taskData.map(task => (
-                <Todo task={task.task} id={task.id} completed={task.completed} />
+            {props.taskData.map((todo, index) => (
+                <Todo todo={todo} key={index} completed={todo.completed} handleClickComplete={props.handleClickComplete} />
             ))}
         </div>
     );
