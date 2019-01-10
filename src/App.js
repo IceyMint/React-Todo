@@ -24,7 +24,11 @@ class App extends React.Component {
   }
 
   handleAddTask = (e) => {
-    this.setState({ taskData: this.state.taskData });
+    e.preventDefault();
+    let tempArray = this.state.taskData;
+    tempArray.push({ task: this.state.task, id: Date.now(), completed: false });
+    this.setState({ taskData: tempArray, task: '' });
+
   }
 
   render() {
