@@ -31,11 +31,22 @@ class App extends React.Component {
 
   }
 
+  handleClickComplete = (id) => {
+    let tempArray = [...this.state.taskData];
+    tempArray.map(x => {
+      if (x.id === id) {
+        x.completed = true;
+        return x
+      } else return x;
+    });
+    this.setState({ taskData: tempArray });
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList taskData={this.state.taskData} />
+        <TodoList taskData={this.state.taskData} handleTaskClick={this.handleTaskClick} handleClickComplete={this.handleClickComplete} />
         <TodoForm task={this.state.task} handleChange={this.handleChange} handleAddTask={this.handleAddTask} />
       </div>
     );
